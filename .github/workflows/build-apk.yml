@@ -41,16 +41,19 @@ jobs:
           mkdir -p keystore
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > keystore/release.keystore
 
-      # Fix: pipe all answers — n for JDK, then JAVA_HOME path
+      # Find exact JAVA_HOME and pass it to bubblewrap
       - name: Init TWA project
         run: |
+          JAVA_PATH=$(dirname $(dirname $(readlink -f $(which java))))
+          echo "Java path: $JAVA_PATH"
           mkdir -p twa-build && cd twa-build
-          printf "n\n$JAVA_HOME\n" | bubblewrap init --manifest ../twa-manifest.json
+          printf "n\n${JAVA_PATH}\n" | bubblewrap init --manifest ../twa-manifest.json
 
       - name: Build APK
         working-directory: twa-build
         run: |
-          printf "n\n$JAVA_HOME\n" | bubblewrap build \
+          JAVA_PATH=$(dirname $(dirname $(readlink -f $(which java))))
+          printf "n\n${JAVA_PATH}\n" | bubblewrap build \
             --signingKeyPath  ../keystore/release.keystore \
             --signingKeyAlias erp-key \
             --ksPass          "${{ secrets.KEYSTORE_PASS }}" \
