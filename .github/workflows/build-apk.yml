@@ -41,15 +41,18 @@ jobs:
           mkdir -p keystore
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > keystore/release.keystore
 
+      # Fix: echo "n" to skip JDK install prompt, use our own Java 17
       - name: Init TWA project
         run: |
-          mkdir twa-build && cd twa-build
-          bubblewrap init --manifest ../twa-manifest.json
+          mkdir -p twa-build && cd twa-build
+          echo "n" | bubblewrap init --manifest ../twa-manifest.json
+        env:
+          JAVA_HOME: ${{ env.JAVA_HOME }}
 
       - name: Build APK
         working-directory: twa-build
         run: |
-          bubblewrap build \
+          echo "n" | bubblewrap build \
             --signingKeyPath  ../keystore/release.keystore \
             --signingKeyAlias erp-key \
             --ksPass          "${{ secrets.KEYSTORE_PASS }}" \
