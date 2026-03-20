@@ -1,0 +1,41 @@
+{
+  "packageId": "com.osamkhan.erpdashboard",
+  "host": "osamkhan419-commits.github.io",
+  "name": "ERP Dashboard",
+  "launcherName": "ERP Dashboard",
+  "display": "standalone",
+  "orientation": "portrait",
+  "themeColor": "#292524",
+  "navigationColor": "#292524",
+  "navigationColorDark": "#292524",
+  "navigationDividerColor": "#292524",
+  "navigationDividerColorDark": "#292524",
+  "backgroundColor": "#fdfaf5",
+  "enableNotifications": false,
+  "startUrl": "/",
+  "iconUrl": "https://osamkhan419-commits.github.io/icon-512.png",
+  "maskableIconUrl": "https://osamkhan419-commits.github.io/icon-512.png",
+  "monochromeIconUrl": "https://osamkhan419-commits.github.io/icon-512.png",
+  "appVersion": "1.0.0",
+  "appVersionCode": 1,
+  "signingKey": {
+    "path": "../keystore/release.keystore",
+    "alias": "erp-key"
+  },
+  "splashScreenFadeOutDuration": 300,
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://osamkhan419-commits.github.io/",
+  "minSdkVersion": 21,
+  "targetSdkVersion": 34,
+  "webManifestUrl": "https://osamkhan419-commits.github.io/manifest.json",
+  "generatorApp": "bubblewrap-cli",
+  "features": {
+    "locationDelegation": { "enabled": false },
+    "playBilling": { "enabled": false }
+  },
+  "alphaDependencies": { "enabled": false },
+  "enableSiteSettingsShortcut": true,
+  "serviceAccountJsonFile": null
+}
